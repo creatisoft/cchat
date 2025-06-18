@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-192x192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creatisoft Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <div id="main-app" class="main-app">
+        <!-- Navigation -->
+        <nav class="nav-bar">
+          <div class="nav-container">
+            <div class="nav-brand">
+              <img src="/favicon-192x192.png" alt="Creatisoft Chat Logo" class="nav-logo">
+              <h1 class="nav-title">Creatisoft Chat</h1>
+            </div>
+            <div class="nav-actions">
+              <div class="ui-switch">
+                <label for="ui-select">Theme Selection UI:</label>
+                <select id="ui-select" class="ui-select">
+                  <option value="original">Original</option>
+                  <option value="experimental">Experimental</option>
+                </select>
+              </div>
+
+              <!-- Text Editor Toggle (only visible in experimental mode) -->
+              <div id="text-editor-toggle-container" class="text-editor-toggle-container hidden">
+                <label for="text-editor-toggle">Text Editor:</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="text-editor-toggle" class="toggle-input">
+                  <label for="text-editor-toggle" class="toggle-label">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+              </div>
+
+              <button id="nav-chat" class="nav-btn active">Chat</button>
+              <button id="nav-profile" class="nav-btn">Profile</button>
+              <button id="google-signin-btn" class="google-signin-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                Sign in with Google
+              </button>
+              <button id="help-btn" class="help-btn">?</button>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Chat Page -->
+        <div id="chat-page" class="page chat-centered">
+          <div class="conversation-history model-selector">
+            <label>Conversation History</label>
+            <div class="conversation-container">
+              <!-- Conversations will be loaded here -->
+            </div>
+          </div>
+          
+          <!-- Chat Window -->
+          <div class="chat-container">
+            <div class="model-selector">
+              <label for="model-select">AI Model:</label>
+              <select id="model-select" class="model-select">
+                <option value="google/gemini-2.0-flash-001">gemini-2.0-flash-001</option>
+                <option value="google/gemini-2.0-flash-lite-001">gemini-2.0-flash-lite-001</option>
+                <option value="openai/gpt-4.1-nano">gpt-4.1-nano</option>
+                <option value="qwen/qwen-2.5-7b-instruct">qwen-2.5-7b-instruct</option>
+              </select>
+              <button id="new-chat-btn" class="new-chat-btn">New Chat</button>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages">
+              <div class="welcome-message">
+                <h3>👋 Welcome to Creatisoft Chat! 😀</h3>
+                <p>Select a model 🤖 and start chatting 🗣️ with AI assistants.</p>
+              </div>
+            </div>
+            
+            <div class="chat-input-container">
+              <div class="chat-input-wrapper">
+                <textarea 
+                  id="chat-input" 
+                  class="chat-input" 
+                  placeholder="Type your message..."
+                  rows="1"
+                ></textarea>
+                <button id="web-search-btn" class="web-search-btn" title="Enable web search">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M2 12h20"></path>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </button>
+                <button id="send-btn" class="send-btn" disabled>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22,2 15,22 11,13 2,9"></polygon>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profile-page" class="page hidden">
+          <div class="profile-container">
+            <h2>User Profile</h2>
+            <div class="profile-info">
+              <div class="profile-avatar">
+                <img id="user-avatar" src="" alt="User Avatar" class="avatar">
+              </div>
+              <div class="profile-details">
+                <h3 id="user-name">Loading...</h3>
+                <p id="user-email">Loading...</p>
+              </div>
+            </div>
+            <!-- API Key Section -->
+            <div class="api-key-section">
+              <h3>API Key Management</h3>
+              <p class="api-key-description">Paste your OpenRouter API key to enable AI chat functionality.</p>
+              <div class="api-key-input-group">
+                <input type="password" id="api-key-input" class="api-key-input" placeholder="Enter your OpenRouter API key...">
+                <button id="apply-key-btn" class="apply-key-btn">Apply</button>
+                <button id="delete-key-btn" class="delete-key-btn">Delete Key</button>
+              </div>
+              <div id="api-key-status" class="api-key-status"></div>
+            </div>
+
+            <div class="danger-zone">
+              <h3>Danger Zone</h3>
+              <p class="danger-zone-description">Permanently delete your account and all associated data. This action cannot be undone.</p>
+              <div class="danger-zone-content">
+                <button id="delete-profile-btn" class="delete-profile-btn">Delete Profile</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading Overlay -->
+      <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <!-- About Modal -->
+      <div id="about-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>About Creatisoft Chat</h3>
+            <button id="close-modal" class="close-modal-btn">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Welcome to <strong>Creatisoft Chat</strong> - your intelligent AI companion for conversations, creativity, and productivity!</p>
+            
+            <h4>Features:</h4>
+            <ul>
+              <li>🤖 Multiple AI models to choose from (Gemini, GPT, Qwen)</li>
+              <li>🌐 Web search integration for real-time information</li>
+              <li>💬 Persistent conversation history</li>
+              <li>🔐 Secure authentication with Google</li>
+              <li>🎨 Two UI themes: Original and Experimental</li>
+              <li>📝 Built-in text editor (Experimental mode)</li>
+              <li>🎯 Syntax highlighting for code</li>
+              <li>📱 Responsive design for all devices</li>
+            </ul>
+
+            <h4>How it works:</h4>
+            <p>Simply sign in with Google, add your OpenRouter API key in your profile, select an AI model, and start chatting! Toggle the web search button (🌐) to enable real-time web information in your conversations. Your conversations are saved automatically and synced across your devices.</p>
+
+            <p><em>Built with privacy in mind - your data stays secure and is only processed to provide the chat functionality you love.</em></p>
+          </div>
+          <div class="modal-footer">
+            <!-- Add your own donation/support links here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+
+    <!-- Add your own analytics here if needed -->
+
+  </body>
+</html>

@@ -1,0 +1,148 @@
+/* Syntax highlighting and code block styles */
+
+.code-block-container {
+  margin: 1rem 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-dark);
+  color: var(--text-inverse);
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: var(--font-size-sm);
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-language {
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.copy-code-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-inverse);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.5rem;
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-code-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.code-block-container pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.code-block-container code {
+  font-family: inherit;
+}
+
+/* Text blocks in formatted messages */
+.text-block {
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+.text-block:last-child {
+  margin-bottom: 0;
+}
+
+/* Markdown formatting styles */
+.text-block h1,
+.message-content h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem 0;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.25rem;
+}
+
+.text-block h2,
+.message-content h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0.75rem 0 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.text-block h3,
+.message-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.25rem 0;
+  color: var(--text-primary);
+}
+
+.text-block strong,
+.message-content strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.text-block em,
+.message-content em {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.text-block code,
+.message-content code {
+  background: var(--bg-secondary);
+  padding: 0.125rem 0.25rem;
+  border-radius: var(--radius-sm);
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+}
+
+.text-block ul,
+.message-content ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.text-block li,
+.message-content li {
+  margin: 0.25rem 0;
+  line-height: 1.5;
+}
+
+.text-block a,
+.message-content a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.text-block a:hover,
+.message-content a:hover {
+  border-bottom-color: var(--primary-color);
+}
+
+/* Improved message styling */
+.message-content {
+  white-space: pre-wrap;
+}
+
+/* Ensure code blocks don't overflow in narrow containers */
+.message-content pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
