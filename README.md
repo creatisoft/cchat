@@ -2,6 +2,9 @@
 
 A modern, responsive AI chat application template with experimental UI features. This is a frontend-only template with placeholder backend functions that need to be implemented.
 
+<img width="1440" alt="creatisoft-chat-screenshot" src="https://github.com/user-attachments/assets/d832d4f5-fb27-4479-889b-ccf8d07b7cf8" />
+
+
 ## ⚠️ Important Notice
 
 This is a **template/demo version** with all backend logic removed for security. You'll need to implement your own:
